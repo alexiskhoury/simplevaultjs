@@ -31,6 +31,6 @@ Contact me for any advise for common problems or issues.
 
 [@Author][3]
 
-[1](/simplevault.png "SimpleVaultJS")
-[2](https://github.com/matiassingers/awesome-readme)
-[3](http://akconcept.epizy.com)
+[1]: /simplevault.png "SimpleVaultJS"
+[2]: http://simplevault.sourceforge.net/
+[3]: http://akconcept.epizy.com
