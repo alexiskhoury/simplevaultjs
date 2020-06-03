@@ -1,6 +1,7 @@
 # SIMPLE VAULT JS
 
 A node js password manager application.
+
 ![Alt][1]
 
 ## Description
