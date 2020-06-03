@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="Alexis Khoury">
+
+  <title>View - Simple Vault JS</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">Simple Vault JS</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="tools.html">Tools</a>
+          </li>
+          <li class="nav-item">
+            <div class="dropdown">
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" id="Preview" href="#" role="button"
+                aria-haspopup="true" aria-expanded="false">Category</a>
+              <div class="dropdown-menu" aria-labelledby="Preview">
+                <% _.each(categories, function(item, key, idx){ %>
+                <a class="dropdown-item" href="findcat.html?search=<%= key %>"><strong><%= key %>:</strong> <%= item %></a>
+                <% }); %>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="new.html">Add New Entry</a>
+          </li>
+        </ul>&nbsp;&nbsp;
+        <form class="form-inline" method="GET" action="find.html">
+          <input type="text" class="form-control mr-sm-2" name="search" placeholder="Search">
+          <button type="submit" class="btn btn-primary">Go</button>
+        </form>
+      </div><!-- /.navbar-collapse -->
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <br><br>
+        <h2 class="text-left">View Entry</h2>
+        <table class="table table-bordered table-sm">
+          <tr>
+            <td class="text-left">Category</td>
+            <td class="text-left"><%= data.category %></td>
+          </tr>
+          <tr>
+            <td class="text-left">Title</td>
+            <td class="text-left"><%= data.title %></td>
+          </tr>
+          <tr>
+            <td class="text-left">Subtitle</td>
+            <td class="text-left"><%= data.subtitle %></td>
+          </tr>
+          <tr>
+            <td colspan="2">&nbsp;</td>
+          </tr>
+          <tr>
+            <td class="text-left">URL</td>
+            <td class="text-left"><a class="text" target="_blank" rel="noopener noreferrer" href=<%= data.url %>><%= data.url %></a></td>
+          </tr>
+          <tr>
+            <td class="text-left">Login</td>
+            <td class="text-left"><%= data.login %></td>
+          </tr>
+          <tr>
+            <td class="text-left">Password</td>
+            <td class="text-left"><%= data.password %></td>
+          </tr>
+          <tr>
+            <td class="text-left">Note</td>
+            <td class="text-left"><%= data.note %></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <br><br><br><br>
+  <footer class="py-1 bg-dark text-white-50">
+    <div class="container text-center">
+      <small>Copyright &copy; <a class="text-muted" href="http://akconcept.epizy.com">AKCONCEPT</a></small>
+    </div>
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.slim.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

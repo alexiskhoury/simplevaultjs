@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="Alexis Khoury">
+
+  <title>Edit - Simple Vault JS</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">Simple Vault JS</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="tools.html">Tools</a>
+          </li>
+          <li class="nav-item">
+            <div class="dropdown">
+              <a class="nav-link dropdown-toggle" data-toggle="dropdown" id="Preview" href="#" role="button"
+                aria-haspopup="true" aria-expanded="false">Category</a>
+              <div class="dropdown-menu" aria-labelledby="Preview">
+                <% _.each(categories, function(item, key, idx){ %>
+                <a class="dropdown-item" href="findcat.html?search=<%= key %>"><strong><%= key %>:</strong> <%= item %></a>
+                <% }); %>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item <% if(controls[0].new == true) { %>active<% } %>">
+            <a class="nav-link" href="new.html">Add New Entry</a>
+            <% if(controls[0].new == true) { %>
+            <span class="sr-only">(current)</span>
+            <% } %>
+          </li>
+        </ul>&nbsp;&nbsp;
+        <form class="form-inline" method="GET" action="find.html">
+          <input type="text" class="form-control mr-sm-2" name="search" placeholder="Search">
+          <button type="submit" class="btn btn-primary">Go</button>
+        </form>
+      </div><!-- /.navbar-collapse -->
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <br>
+        <% if(controls[0].error == true) { %>
+        <div class="alert alert-danger" role="alert">
+          Wrong Password!
+        </div>
+        <% } %>
+        <% if(controls[0].success == true) { %>
+        <div class="alert alert-primary" role="alert">
+          Good Password!
+        </div>
+        <div class="alert alert-primary" role="alert">
+          Record <%= data.title %> Saved Successfully!
+        </div>
+        <% } %>
+        <% if(controls[0].success == false) { %>
+        <% if(controls[0].new == true) { %>
+        <h2 class="text-left">New Entry</h2>
+        <% } %>
+        <% if(controls[0].new == false) { %>
+        <h2 class="text-left">Edit Entry</h2>
+        <% } %>
+        <% } %>
+      </div>
+    </div>
+    <% if(controls[0].success == false) { %>
+    <form method="GET" <% if(controls[0].new == false) { %>action="save.html" <% } %> <% if(controls[0].new == true) { %>action="new.html" <% } %>>
+      <% if(controls[0].new == false) { %>
+      <input type="hidden" name="lokiid" value="<%= data.$loki %>">
+      <% } %>
+      <input type="hidden" name="authorization" value="1">
+      <div class="form-group row">
+        <label for="lcat" class="col-3 col-form-label">Category</label>
+        <div class="col-9">
+          <input id="lcat" name="category" type="text" aria-describedby="lcatHelpBlock" class="form-control" value="<%= data.category %>">
+          <span id="lcatHelpBlock" class="form-text text-muted">or chose from existing</span>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="lcats" class="col-3 col-form-label">Categories</label>
+        <div class="col-9">
+          <select id="lcats" name="categories" class="form-control">
+            <% _.each(cats, function(item, key, idx){ %>
+            <option value="<%= item %>"><%= item %></option>
+            <% }); %>
+          </select>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-3 col-form-label" for="ltitle">Title</label>
+        <div class="col-9">
+          <input id="ltitle" name="title" type="text" required="required" class="form-control" value="<%= data.title %>">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-3 col-form-label" for="lsubtitle">Subtitle</label>
+        <div class="col-9">
+          <input id="lsubtitle" name="subtitle" type="text" class="form-control" value="<%= data.subtitle %>">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-3 col-form-label" for="lurl">URL</label>
+        <div class="col-9">
+          <input id="lurl" name="url" type="text" class="form-control" value="<%= data.url %>">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="llogin" class="col-3 col-form-label">Login</label>
+        <div class="col-9">
+          <input id="llogin" name="login" type="text" class="form-control" value="<%= data.login %>">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-3 col-form-label" for="lpass">Password</label>
+        <div class="col-9">
+          <input id="lpass" name="pass" type="text" required="required" class="form-control" value="<%= data.password %>">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="lnote" class="col-3 col-form-label">Note</label>
+        <div class="col-9">
+          <textarea id="lnote" name="note" cols="40" rows="5" class="form-control"><%= data.note %></textarea>
+        </div>
+      </div>
+      <div class="form-group form-inline row">
+        <div class="offset-3 col-9">
+          <input type="password" class="form-control" name="password" placeholder="Password">&nbsp;&nbsp;
+          <button name="submit" type="submit" class="btn btn-primary">Save</button>
+        </div>
+      </div>
+    </form>
+    <% } %>
+  </div>
+  <br><br><br><br>
+  <footer class="py-1 bg-dark text-white-50">
+    <div class="container text-center">
+      <small>Copyright &copy; <a class="text-muted" href="http://akconcept.epizy.com">AKCONCEPT</a></small>
+    </div>
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.slim.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
