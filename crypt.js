@@ -11,8 +11,8 @@ var self = {
   },
   // Decrypt
   decrypt_data: function(digest) {
-    //original code was digest.toString(); this was modified to disgets ony since toString() was appende din line 9
-    var bytes = crypto.AES.decrypt(digest, 'farm19J0O');
+    //original code was digest.toString(); this was modified to disgets only since toString() was added to line 9
+    var bytes = crypto.AES.decrypt(digest, 'yourhash');
     return bytes.toString(crypto.enc.Utf8);
   },
 
