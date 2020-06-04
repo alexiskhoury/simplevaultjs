@@ -21,8 +21,9 @@ This project is inspred from [SimpleVault][2] PHP project and ported to node js 
 ### Installing
 
 * Download and unzip this repository
-* Optional: change the password hash in file crypt.js line 9 (this operation is not reversible)
+* Optional: change the password hash in file crypt.js line 9 and line 15 (this operation is not reversible) and must done once before installation
 * Issue the command: npm install
+* If you want to install this application on the web, make sure to use TLS encryption. Queries are issued with GET method and can be visible to third parties whith no TLS encryption
 
 ### Executing
 * Run command: node main.js this will run rhe application on the host machine at port 5000
@@ -30,7 +31,7 @@ This project is inspred from [SimpleVault][2] PHP project and ported to node js 
 
 ## Help
 
-Contact me for any advise for common problems or issues.
+Contact me for any advise, for common problems or issues.
 
 ## Author
 
